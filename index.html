@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSGlobal India | Real Estate Consultancy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --primary:#0b2a3c;
+      --primary-2:#1a4b62;
+      --accent:#fbbf24;
+      --accent-2:#d97706;
+      --line:#e5e7eb;
+      --shadow:0 18px 45px rgba(15,23,42,.10);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 24px}
+    .section{padding:90px 0}
+    .section-head{max-width:780px;margin:0 auto 44px;text-align:center}
+    .eyebrow{
+      display:inline-block;padding:7px 14px;border-radius:999px;
+      background:#fff7db;color:#9a6700;font-size:.85rem;font-weight:700;
+      letter-spacing:.02em;margin-bottom:14px;
+    }
+    h1,h2,h3,h4,h5,p{margin:0}
+    h2{
+      font-size:clamp(2rem,4vw,3.1rem);
+      line-height:1.1;color:var(--primary);margin-bottom:14px;
+    }
+    .section-head p{color:var(--muted);font-size:1.05rem}
+
+    .nav{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(229,231,235,.8);
+    }
+    .nav-inner{
+      min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:800;
+      color:var(--primary);letter-spacing:.02em;
+    }
+    .brand-mark{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      display:grid;place-items:center;color:#fff;
+      box-shadow:0 10px 20px rgba(11,42,60,.22);
+    }
+    .brand span{color:var(--accent-2)}
+    .nav-links{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+    .nav-links a{
+      color:var(--primary);font-weight:600;font-size:.98rem;opacity:.92;
+    }
+    .nav-links a:hover{color:var(--accent-2)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 22px;border-radius:999px;font-weight:800;
+      transition:.25s ease;border:1px solid transparent;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),#f59e0b);
+      color:#111827;box-shadow:0 12px 26px rgba(251,191,36,.28);
+    }
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-secondary{
+      background:transparent;border-color:rgba(255,255,255,.45);color:#fff
+    }
+
+    .hero{
+      padding:76px 0 36px;
+      background:
+        linear-gradient(135deg, rgba(11,42,60,.96), rgba(26,75,98,.92)),
+        url('https://images.unsplash.com/photo-1560518883-ce0905b1ffa0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color:#fff;
+    }
+    .hero-grid{
+      display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;
+      min-height:calc(100vh - 140px);
+    }
+    .hero h1{
+      font-size:clamp(2.7rem,5vw,4.8rem);line-height:1.03;letter-spacing:-.03em;margin-bottom:18px;
+    }
+    .hero h1 span{color:var(--accent)}
+    .hero p{color:rgba(255,255,255,.88);font-size:1.08rem;max-width:640px;margin-bottom:28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:32px}
+    .hero-stats{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px
+    }
+    .stat{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;padding:18px 16px;
+    }
+    .stat b{display:block;font-size:1.5rem;margin-bottom:4px;color:#fff}
+    .stat span{font-size:.92rem;color:rgba(255,255,255,.82)}
+    .hero-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:28px;
+      padding:14px;
+      box-shadow:0 18px 50px rgba(0,0,0,.24);
+    }
+    .hero-card img{
+      border-radius:22px;width:100%;height:520px;object-fit:cover;
+    }
+
+    .marquee{margin-top:-26px;position:relative;z-index:3}
+    .marquee-inner{
+      background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);
+      padding:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+    }
+    .mini{
+      display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:18px;
+      background:#fbfdff;border:1px solid #edf2f7;
+    }
+    .mini i{font-size:1.35rem;color:var(--accent-2);margin-top:3px}
+    .mini b{display:block;margin-bottom:2px;color:var(--primary)}
+    .mini span{font-size:.93rem;color:var(--muted)}
+
+    .cards{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:22px
+    }
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:28px;transition:.25s ease;height:100%;
+    }
+    .card:hover{transform:translateY(-4px)}
+    .card .icon{
+      width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+      background:linear-gradient(135deg,#fff7db,#fde68a);color:#8a5b00;margin-bottom:18px;font-size:1.45rem;
+    }
+    .card h3{font-size:1.28rem;margin-bottom:10px;color:var(--primary)}
+    .card p,.card li{color:var(--muted)}
+    .list{margin:0;padding-left:18px}
+    .list li{margin:8px 0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .media{border-radius:28px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .media img{width:100%;height:100%;object-fit:cover}
+    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .pill{
+      padding:8px 12px;border-radius:999px;background:#eef6fb;color:#17425a;font-size:.9rem;font-weight:700
+    }
+
+    .dark{
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      color:#fff;
+    }
+    .dark .section-head h2,.dark .section-head p{color:#fff}
+    .dark .section-head p{opacity:.86}
+    .dark .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:#fff}
+    .dark .card p,.dark .card li{color:rgba(255,255,255,.86)}
+    .dark .card h3{color:#fff}
+    .dark .icon{background:rgba(251,191,36,.14);color:var(--accent)}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .why-item{
+      padding:24px;border-radius:22px;background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12)
+    }
+    .why-item i{color:var(--accent);font-size:1.5rem;margin-bottom:12px}
+    .why-item h4{margin-bottom:8px}
+
+    .projects{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .project{
+      background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)
+    }
+    .project img{width:100%;height:210px;object-fit:cover}
+    .project .p{padding:18px 18px 22px}
+    .tag{
+      display:inline-block;margin-bottom:10px;padding:6px 11px;border-radius:999px;
+      background:#fff1cf;color:#8a5b00;font-size:.82rem;font-weight:800
+    }
+    .project h4{margin-bottom:6px;color:var(--primary)}
+    .project p{color:var(--muted);font-size:.95rem}
+
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    details{
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;
+      box-shadow:var(--shadow)
+    }
+    summary{cursor:pointer;font-weight:800;color:var(--primary)}
+    details p{padding-top:12px;color:var(--muted)}
+
+    .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:start}
+    .contact-box{
+      background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:28px
+    }
+    .contact-item{
+      display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #eef2f7
+    }
+    .contact-item:last-child{border-bottom:none}
+    .contact-item i{
+      width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+      background:#fef3c7;color:#9a6700;flex:0 0 42px
+    }
+    .form{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px
+    }
+    .full{grid-column:1/-1}
+    input,select,textarea{
+      width:100%;padding:14px 15px;border-radius:14px;border:1px solid #dbe2ea;
+      background:#fbfdff;font:inherit;color:var(--text);outline:none
+    }
+    textarea{min-height:145px;resize:vertical}
+    .footer{
+      background:#071c29;color:#dbe7ef;padding:34px 0 18px
+    }
+    .footer-grid{
+      display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:20px
+    }
+    .footer h4{color:#fff;margin-bottom:12px}
+    .footer a{display:block;color:#c7d6df;margin:8px 0}
+    .footer a:hover{color:var(--accent)}
+    .social{display:flex;gap:10px;margin-top:14px}
+    .social a{
+      width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.07);
+      display:grid;place-items:center
+    }
+    .bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:24px;padding-top:16px;text-align:center;color:#9fb4c1}
+
+    @media (max-width: 1100px){
+      .hero-grid,.grid-2,.contact-grid{grid-template-columns:1fr}
+      .hero-card img{height:420px}
+      .hero-stats,.marquee-inner,.cards,.projects,.why-grid,.faq,.footer-grid{grid-template-columns:repeat(2,1fr)}
+      #legal .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 720px){
+      .nav-links{display:none}
+      .hero{padding-top:54px}
+      .hero-grid{min-height:auto;padding:26px 0 14px}
+      .hero h1{font-size:2.5rem}
+      .hero-stats,.marquee-inner,.cards,.projects,.why-grid,.faq,.footer-grid,.form,#legal .cards{grid-template-columns:1fr}
+      .btn{width:100%}
+      .hero-actions{flex-direction:column}
+      .section{padding:68px 0}
+      .container{padding:0 16px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark"><i class="fa-solid fa-building"></i></span>
+        <div>RSGlobal <span>India</span></div>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#legal">Legal</a>
+        <a href="#projects">Projects</a>
+        <a href="#why">Why Us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-phone"></i> Free Consultation</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Hyderabad Real Estate Consultancy</div>
+            <h1>Building <span>Dreams</span> Into Valuable Properties</h1>
+            <p>RSGlobal India delivers trusted real estate consultancy, property development, legal guidance, and end-to-end investment support for residential, commercial, and land-based opportunities.</p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-house"></i> Explore Properties</a>
+              <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-calendar-check"></i> Book Consultation</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><b>150+</b><span>Projects</span></div>
+              <div class="stat"><b>2500+</b><span>Clients</span></div>
+              <div class="stat"><b>15+</b><span>Years</span></div>
+              <div class="stat"><b>12</b><span>Service Areas</span></div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=1200&q=80" alt="Modern real estate">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee">
+      <div class="container">
+        <div class="marquee-inner">
+          <div class="mini"><i class="fa-solid fa-file-shield"></i><div><b>Legal Clarity</b><span>Title checks, documentation, and compliance.</span></div></div>
+          <div class="mini"><i class="fa-solid fa-map-location-dot"></i><div><b>Location Research</b><span>Growth-focused site selection and analysis.</span></div></div>
+          <div class="mini"><i class="fa-solid fa-bullhorn"></i><div><b>Sales Support</b><span>Buying, selling, resale, and marketing.</span></div></div>
+          <div class="mini"><i class="fa-solid fa-helmet-safety"></i><div><b>Project Delivery</b><span>Construction and infrastructure execution.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">About Us</div>
+          <h2>Who We Are</h2>
+          <p>RSGlobal India is a professional real estate consultancy offering reliable guidance, project expertise, legal support, and customer-first service across Hyderabad and beyond.</p>
+        </div>
+        <div class="grid-2">
+          <div class="media">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="About RSGlobal India">
+          </div>
+          <div class="card">
+            <div class="icon"><i class="fa-solid fa-building-circle-check"></i></div>
+            <h3>Our Mission</h3>
+            <p>We help clients find, secure, develop, and legally protect real estate assets with clarity and confidence.</p>
+            <div style="height:14px"></div>
+            <p>Our approach combines market knowledge, legal diligence, project execution, and personalized support for every client.</p>
+            <div class="pill-row">
+              <span class="pill">Trusted Advice</span>
+              <span class="pill">Legal Safety</span>
+              <span class="pill">Project Support</span>
+              <span class="pill">Transparent Process</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Our Services</div>
+          <h2>Complete Real Estate Solutions</h2>
+          <p>All the major service categories from your reference sites are combined here into one polished RSGlobal India offering.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card"><div class="icon"><i class="fa-solid fa-house"></i></div><h3>Residential Projects</h3><p>Premium apartments, villas, gated communities, and family homes with end-to-end guidance.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-city"></i></div><h3>Commercial Spaces</h3><p>Office units, business spaces, retail properties, and investment-ready commercial assets.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-map"></i></div><h3>Plot Development</h3><p>DTCP, HMDA, and growth-location plots with planning, layout development, and site support.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-tractor"></i></div><h3>Farm Houses</h3><p>Weekend retreats, lifestyle land parcels, and scenic farm-house concepts.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-pen-ruler"></i></div><h3>Construction</h3><p>High-quality construction services with design coordination, workmanship, and timeline control.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-road"></i></div><h3>Infrastructure</h3><p>Roads, utilities, layout improvements, drainage, and overall development support.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Property Securing</h3><p>Compound walls, gates, boundary protection, and trespass prevention for land parcels.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-handshake"></i></div><h3>Property Management</h3><p>Monitoring, maintenance coordination, tenant handling, and asset supervision.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div><h3>Sale & Resale</h3><p>Purchase, resale, and mandate-based marketing for plots, villas, apartments, and buildings.</p></article>
+        </div>
+
+        <div style="height:22px"></div>
+
+        <div class="cards">
+          <article class="card"><div class="icon"><i class="fa-solid fa-gopuram"></i></div><h3>Vaastu Consultation</h3><p>Property alignment and planning support for balanced residential and commercial spaces.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-paintbrush"></i></div><h3>Interior Design</h3><p>Stylish, functional interior concepts and execution support for homes and offices.</p></article>
+          <article class="card"><div class="icon"><i class="fa-solid fa-key"></i></div><h3>Apartment Rentals</h3><p>Rental solutions for 2BHK, 3BHK, and premium community living requirements.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="legal" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Legal Services</div>
+          <h2>Real Estate Legal Practice</h2>
+          <p>Clear legal support for property transactions, documentation, disputes, compliance, and ownership protection.</p>
+        </div>
+
+        <div class="cards" style="grid-template-columns:repeat(4,1fr);">
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-file-signature"></i></div>
+            <h3>Title Verification</h3>
+            <p>Title search, encumbrance checks, due diligence, and legal opinion for clear marketable title.</p>
+          </article>
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-clipboard-check"></i></div>
+            <h3>Agreements & Compliance</h3>
+            <p>Sale deeds, builder-buyer agreements, RERA-compliant drafting, and registration support.</p>
+          </article>
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-gavel"></i></div>
+            <h3>Disputes & Litigation</h3>
+            <p>Boundary disputes, encroachment, landlord-tenant matters, adverse possession, and legal representation.</p>
+          </article>
+          <article class="card">
+            <div class="icon"><i class="fa-solid fa-handshake-angle"></i></div>
+            <h3>Leases, Partition & NRI</h3>
+            <p>Commercial and residential lease agreements, eviction support, family partition, succession, wills, and NRI property services.</p>
+          </article>
+        </div>
+
+        <div style="height:24px;"></div>
+
+        <div class="card" style="border:2px solid #fde68a;background:linear-gradient(180deg,#fffef7 0%,#fff7db 100%);box-shadow:0 18px 45px rgba(251,191,36,.18);">
+          <div style="display:inline-block;padding:8px 14px;border-radius:999px;background:#fbbf24;color:#111827;font-weight:800;font-size:.85rem;margin-bottom:14px;">
+            Additional Legal Support
+          </div>
+          <h3 style="color:#8a5b00;">Support Services</h3>
+          <ul class="list">
+            <li>Property purchase and sale documentation.</li>
+            <li>Encumbrance certificate and legal opinion review.</li>
+            <li>Complaint handling and enforcement support in Telangana.</li>
+            <li>Power of attorney, rental management, and dispute handling.</li>
+            <li>Sale deed and agreement drafting.</li>
+            <li>Title search and due diligence review.</li>
+            <li>Registration guidance and documentation assistance.</li>
+            <li>Litigation coordination and legal follow-up.</li>
+          </ul>
+        </div>
+
+        <div style="height:24px;"></div>
+
+        <div class="card" style="border:2px solid var(--accent);box-shadow:0 18px 45px rgba(251,191,36,.18);background:linear-gradient(180deg,#fffdf3,#ffffff)">
+          <h3 style="color:var(--accent-2)">Why Clients Choose Us</h3>
+          <ul class="list">
+            <li><strong>Transparent process:</strong> clear explanations and no confusion at any step.</li>
+            <li><strong>Property-focused legal help:</strong> services designed for real estate buyers and owners.</li>
+            <li><strong>Risk reduction:</strong> title, compliance, and dispute checks before issues grow.</li>
+            <li><strong>End-to-end support:</strong> from documentation to registration and follow-up.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Featured Listings</div>
+          <h2>Properties and Project Types</h2>
+          <p>These showcase the property categories commonly presented across your reference websites, organized in a premium format.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80" alt="Luxury villa">
+            <div class="p"><span class="tag">Residential</span><h4>Luxury Villas</h4><p>Independent homes and gated-community villas with premium amenities.</p></div>
+          </article>
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Apartment tower">
+            <div class="p"><span class="tag">Apartments</span><h4>Modern Apartments</h4><p>Smart urban living for families seeking convenience and value.</p></div>
+          </article>
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="Plot land">
+            <div class="p"><span class="tag">Plots</span><h4>Open Plots</h4><p>Approved land parcels for investment and future development.</p></div>
+          </article>
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Commercial space">
+            <div class="p"><span class="tag">Commercial</span><h4>Business Spaces</h4><p>Office and retail spaces for growing brands and investors.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why RSGlobal India</div>
+          <h2>Professional, Transparent, Reliable</h2>
+          <p>We combine consultancy, execution, legal clarity, and customer care into one trusted real estate experience.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-item"><i class="fa-solid fa-shield-heart"></i><h4>Trusted Process</h4><p>Transparent handling from first call to final handover.</p></div>
+          <div class="why-item"><i class="fa-solid fa-clock"></i><h4>On-Time Delivery</h4><p>Clear milestones and reliable scheduling.</p></div>
+          <div class="why-item"><i class="fa-solid fa-scale-balanced"></i><h4>Legal Safety</h4><p>Documentation, verification, and risk reduction.</p></div>
+          <div class="why-item"><i class="fa-solid fa-sitemap"></i><h4>Full-Service Model</h4><p>Consultancy, construction, interiors, and management.</p></div>
+          <div class="why-item"><i class="fa-solid fa-chart-line"></i><h4>Growth Focus</h4><p>Locations selected for future value and potential.</p></div>
+          <div class="why-item"><i class="fa-solid fa-headset"></i><h4>Client Support</h4><p>Responsive assistance before and after purchase.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">FAQ</div>
+          <h2>Common Questions</h2>
+        </div>
+        <div class="faq">
+          <details><summary>What services does RSGlobal India provide?</summary><p>Residential, commercial, plots, farm houses, construction, infrastructure, legal services, property securing, interiors, rentals, and resale support.</p></details>
+          <details><summary>Do you provide legal verification?</summary><p>Yes. Title checks, agreement review, registration support, and RERA guidance can be included.</p></details>
+          <details><summary>Can you help with plot and layout development?</summary><p>Yes. We handle plot selection, layout development, and supporting infrastructure planning.</p></details>
+          <details><summary>Do you offer property protection services?</summary><p>Yes. Boundary walls, gates, and security-oriented land protection are available.</p></details>
+          <details><summary>Can I get help with interiors or Vaastu?</summary><p>Yes. Interior design and Vaastu consultation are part of the service portfolio.</p></details>
+          <details><summary>Do you work with NRI clients?</summary><p>Yes. NRI property support, documentation, and management assistance can be provided.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Contact</div>
+          <h2>Let’s Build Your Next Property Move</h2>
+          <p>Professional contact section with inquiry form, company details, and service selection.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-box">
+            <h3 style="color:var(--primary);margin-bottom:18px">RSGlobal India</h3>
+            <div class="contact-item"><i class="fa-solid fa-location-dot"></i><div><b>Location</b><div style="color:var(--muted)">Hyderabad, Telangana, India</div></div></div>
+            <div class="contact-item"><i class="fa-solid fa-phone"></i><div><b>Phone</b><div style="color:var(--muted)">+91 98765 43210</div></div></div>
+            <div class="contact-item"><i class="fa-solid fa-envelope"></i><div><b>Email</b><div style="color:var(--muted)">info@rsglobalindia.com</div></div></div>
+            <div class="contact-item"><i class="fa-solid fa-clock"></i><div><b>Hours</b><div style="color:var(--muted)">Mon-Sat: 9:00 AM - 7:00 PM</div></div></div>
+          </div>
+
+          <div class="contact-box">
+            <form class="form">
+              <input type="text" placeholder="Full Name" required>
+              <input type="tel" placeholder="Phone Number" required>
+              <input type="email" placeholder="Email Address" required>
+              <select required>
+                <option value="">Select Service</option>
+                <option>Residential Projects</option>
+                <option>Commercial Spaces</option>
+                <option>Plot Development</option>
+                <option>Farm Houses</option>
+                <option>Construction</option>
+                <option>Infrastructure</option>
+                <option>Property Securing</option>
+                <option>Property Management</option>
+                <option>Sale & Resale</option>
+                <option>Vaastu Consultation</option>
+                <option>Interior Design</option>
+                <option>Apartment Rentals</option>
+                <option>Legal Services</option>
+              </select>
+              <textarea class="full" placeholder="Tell us about your requirement" required></textarea>
+              <div class="full">
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Send Inquiry</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:12px;color:#fff">
+            <span class="brand-mark"><i class="fa-solid fa-building"></i></span>
+            <div>RSGlobal <span>India</span></div>
+          </div>
+          <p style="color:#c7d6df">A complete real estate consultancy website built for professional presentation, customer trust, and lead generation.</p>
+          <div class="social">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#legal">Legal</a>
+          <a href="#projects">Projects</a>
+          <a href="#why">Why Us</a>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <a href="#services">Residential</a>
+          <a href="#services">Commercial</a>
+          <a href="#services">Plots</a>
+          <a href="#services">Construction</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="#">Hyderabad, Telangana</a>
+          <a href="#">+91 98765 43210</a>
+          <a href="#">info@rsglobalindia.com</a>
+        </div>
+      </div>
+      <div class="bottom">© 2026 RSGlobal India. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+    document.querySelectorAll('form').forEach(form=>{
+      form.addEventListener('submit',e=>{
+        e.preventDefault();
+        alert('Thank you. Your inquiry has been submitted successfully.');
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
